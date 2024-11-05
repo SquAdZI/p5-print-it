@@ -46,3 +46,11 @@ arrowLeft.addEventListener("click", () =>{
 })
 
 const dots = document.querySelector(".dots")
+for(let i = 0; i < slides.length; i++){
+	let selected = ""
+	if(i == 1){
+		selected = " dot_selected"
+	}
+	const dot = `<div class="dot ${selected}"></div>`
+	dots.insertAdjacentHTML("beforeend", dot)
+}
