@@ -26,6 +26,12 @@ arrowRight.addEventListener("click", () => {
 	} else {
 		index++;
 	}
+	document.querySelector('.dot_selected')
+		.classList
+		.remove('dot_selected')
+	dots.children[index]
+		.classList
+		.add('dot_selected')
 	const image = document.querySelector('.banner-img')
 	image.src = `./assets/images/slideshow/${slides[index].image}`
 	const tagLine = document.querySelector('#banner > p')
@@ -39,6 +45,12 @@ arrowLeft.addEventListener("click", () =>{
 	} else {
 		index--;
 	}
+	document.querySelector('.dot_selected')
+		.classList
+		.remove('dot_selected')
+	dots.children[index]
+		.classList
+		.add('dot_selected')
 	const image = document.querySelector('.banner-img')
 	image.src =`./assets/images/slideshow/${slides[index].image}`
 	const tagLine = document.querySelector(`#banner > p`)
@@ -48,7 +60,7 @@ arrowLeft.addEventListener("click", () =>{
 const dots = document.querySelector(".dots")
 for(let i = 0; i < slides.length; i++){
 	let selected = ""
-	if(i == 1){
+	if(i == 0){
 		selected = " dot_selected"
 	}
 	const dot = `<div class="dot ${selected}"></div>`
