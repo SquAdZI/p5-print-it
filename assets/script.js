@@ -21,48 +21,39 @@ const slides = [
 const arrowRight = document.querySelector(".arrow_right")
 let index = 0
 arrowRight.addEventListener("click", () => {
-	if(index == 3){
-		index = 0
-	} else {
-		index++;
-	}
-	document.querySelector('.dot_selected')
-		.classList
-		.remove('dot_selected')
-	dots.children[index]
-		.classList
-		.add('dot_selected')
-	const image = document.querySelector('.banner-img')
-	image.src = `./assets/images/slideshow/${slides[index].image}`
-	const tagLine = document.querySelector('#banner > p')
-	tagLine.innerHTML = slides[index].tagLine
+	index = index == 3 ? 0 : index + 1
+	changeSlide(index)
+	changeDot(index)
 })
 
 const arrowLeft = document.querySelector(".arrow_left")
 arrowLeft.addEventListener("click", () =>{
-	if(index == 0){
-		index = 3
-	} else {
-		index--;
-	}
+	index = index == 0 ? 3 : index - 1
+	changeSlide(index)
+	changeDot(index)
+})
+
+const changeSlide = (numberSlide) => {
+	// Récuperer l'index et changer le contenu du slide
+	const image = document.querySelector('.banner-img')
+	image.src = `./assets/images/slideshow/${slides[numberSlide].image}`
+	const tagLine = document.querySelector('#banner > p')
+	tagLine.innerHTML = slides[numberSlide].tagLine
+}
+
+const changeDot = (numberDot) => {
 	document.querySelector('.dot_selected')
 		.classList
 		.remove('dot_selected')
-	dots.children[index]
+	dots.children[numberDot]
 		.classList
 		.add('dot_selected')
-	const image = document.querySelector('.banner-img')
-	image.src =`./assets/images/slideshow/${slides[index].image}`
-	const tagLine = document.querySelector(`#banner > p`)
-	tagLine.innerHTML = slides[index].tagLine
-})
+}
 
 const dots = document.querySelector(".dots")
 for(let i = 0; i < slides.length; i++){
-	let selected = ""
-	if(i == 0){
-		selected = " dot_selected"
-	}
+	// variable = (condition) ? valeur si vrai : valeur si faux// (ternaire) très important
+	const selected = i == 0 ? " dot_selected" : ""
 	const dot = `<div class="dot ${selected}"></div>`
 	dots.insertAdjacentHTML("beforeend", dot)
 }
